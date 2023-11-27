@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/Yandex-Practicum/final-project-encoding-go/utils"
 
 	"github.com/Yandex-Practicum/final-project-encoding-go/encoding"
-	"github.com/Yandex-Practicum/final-project-encoding-go/utils"
 )
 
 func Encode(data encoding.MyEncoder) error {
