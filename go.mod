@@ -1,4 +1,4 @@
-module github.com/Yandex-Practicum/final-project-encoding-go
+module github.com/AlexeyMurenkov/final-project-encoding-go
 
 go 1.20
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Yandex-Practicum/final-project-encoding-go/models"
+	"github.com/AlexeyMurenkov/final-project-encoding-go/models"
 	"gopkg.in/yaml.v3"
 )
 
