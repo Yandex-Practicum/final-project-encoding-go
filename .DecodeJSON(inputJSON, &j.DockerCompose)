@@ -1,0 +1,68 @@
+[33mcommit d1816fc2b3d88cc668123e7af2151c0a0ce39638[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: supppppppbro <113025477+supppppppbro@users.noreply.github.com>
+Date:   Wed Nov 22 17:36:03 2023 +0300
+
+    Update encoding.go
+
+[33mcommit 02513509f43783ad431670400d095c8691f00998[m
+Author: supppppppbro <113025477+supppppppbro@users.noreply.github.com>
+Date:   Wed Nov 22 17:35:16 2023 +0300
+
+    Delete precode directory
+
+[33mcommit 1aa823fde11a7293c54ab999e26a0903c9d359ec[m
+Author: supppppppbro <113025477+supppppppbro@users.noreply.github.com>
+Date:   Wed Nov 22 17:34:29 2023 +0300
+
+    Update encoding.go
+
+[33mcommit d08c877b39da5c385ccd31f1992d7482c1f2fe1c[m
+Author: supppppppbro <113025477+supppppppbro@users.noreply.github.com>
+Date:   Wed Nov 22 17:32:42 2023 +0300
+
+    Delete encoding/encoding_test.go
+
+[33mcommit b5618c94a0ce72a6f4785d35dc833a15bd34b26b[m
+Merge: 3054315 4ba88b5
+Author: supppppppbro <113025477+supppppppbro@users.noreply.github.com>
+Date:   Wed Nov 22 17:30:35 2023 +0300
+
+    Merge pull request #1 from Yandex-Practicum/prototype
+    
+    prototype
+
+[33mcommit 3054315f478524943e0a4f75bd2ad99a50c92323[m
+Author: bbrodriges <bender.rodriges@gmail.com>
+Date:   Wed Nov 22 16:27:41 2023 +0300
+
+    add autotests
+
+[33mcommit 4ba88b56f7b67cfe1dfb9c8d2d26583bf2ce9b27[m
+Author: Владислав Попов <lekanl3k4n@yandex.ru>
+Date:   Thu Nov 2 18:15:01 2023 +0300
+
+    test and precode added
+
+[33mcommit 4b3729fe73dd1852872b8315fa53c05ff5975171[m
+Author: Владислав Попов <lekanl3k4n@yandex.ru>
+Date:   Wed Nov 1 19:37:42 2023 +0300
+
+    changing example data
+
+[33mcommit 1d65c20524dd92f164bc6953079798e1877ecdec[m
+Author: Владислав Попов <lekanl3k4n@yandex.ru>
+Date:   Wed Nov 1 19:36:53 2023 +0300
+
+    changing data
+
+[33mcommit b2df37c98e02a93dc7052c00ce8baf377543023a[m
+Author: Владислав Попов <lekanl3k4n@yandex.ru>
+Date:   Tue Oct 31 21:11:43 2023 +0300
+
+    prototype
+
+[33mcommit 3f1c4d6fa9b36fd888eaa3515d558e591731012a[m
+Author: Владислав Попов <lekanl3k4n@yandex.ru>
+Date:   Tue Oct 31 20:54:27 2023 +0300
+
+    init commit
