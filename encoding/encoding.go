@@ -35,14 +35,12 @@ func (j *JSONData) Encoding() error {
 		fmt.Printf("ошибка при чтении файла: %s", err.Error())
 	}
 
-	var dockerCompose models.DockerCompose
-
-	err = json.Unmarshal(jsonFile, &dockerCompose)
+	err = json.Unmarshal(jsonFile, &j.DockerCompose)
 	if err != nil {
 		fmt.Printf("ошибка при десериализации из json: %s\n", err.Error())
 	}
 
-	out, err := yaml.Marshal(dockerCompose)
+	out, err := yaml.Marshal(j.DockerCompose)
 	if err != nil {
 		fmt.Printf("ошибка при сериализации в yaml: %s\n", err.Error())
 	}
@@ -51,6 +49,7 @@ func (j *JSONData) Encoding() error {
 	if err != nil {
 		fmt.Printf("ошибка при создании файла: %s", err.Error())
 	}
+	defer f.Close()
 
 	_, err = f.Write(out)
 	if err != nil {
@@ -69,14 +68,12 @@ func (y *YAMLData) Encoding() error {
 		fmt.Printf("ошибка при чтении файла: %s", err.Error())
 	}
 
-	var dockerCompose models.DockerCompose
-
-	err = yaml.Unmarshal(yamlFile, &dockerCompose)
+	err = yaml.Unmarshal(yamlFile, &y.DockerCompose)
 	if err != nil {
 		fmt.Printf("ошибка при десериализации из yaml: %s\n", err.Error())
 	}
 
-	out, err := json.Marshal(dockerCompose)
+	out, err := json.Marshal(y.DockerCompose)
 	if err != nil {
 		fmt.Printf("ошибка при сериализации в json: %s\n", err.Error())
 	}
@@ -85,6 +82,7 @@ func (y *YAMLData) Encoding() error {
 	if err != nil {
 		fmt.Printf("ошибка при создании файла: %s", err.Error())
 	}
+	defer f.Close()
 
 	_, err = f.Write(out)
 	if err != nil {
