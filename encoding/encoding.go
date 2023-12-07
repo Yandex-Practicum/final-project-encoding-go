@@ -40,15 +40,9 @@ func (j *JSONData) Encoding() error {
 	if err != nil {
 		return fmt.Errorf("ошибка при десериализации %s файла: %w\n", j.FileInput, err)
 	}
-
-	yamlFile, err := os.Open(j.FileOutput)
+	yamlFile, err := os.Create(j.FileOutput)
 	if err != nil {
-		fmt.Printf("ошибка при открытии файла %s: %s\n", j.FileOutput, err.Error())
-		fmt.Printf("создаем файл %s\n", j.FileOutput)
-		yamlFile, err = os.Create(j.FileOutput)
-		if err != nil {
-			return fmt.Errorf("ошибка при создании файла: %s: %w\n", j.FileOutput, err)
-		}
+		return fmt.Errorf("ошибка при создании файла: %s: %w\n", j.FileOutput, err)
 	}
 
 	defer yamlFile.Close()
@@ -78,14 +72,9 @@ func (y *YAMLData) Encoding() error {
 		return fmt.Errorf("ошибка при десериализации %s файла: %w\n", y.FileInput, err)
 	}
 
-	jsonFile, err := os.Open(y.FileOutput)
+	jsonFile, err := os.Create(y.FileOutput)
 	if err != nil {
-		fmt.Printf("ошибка при открытии файла %s: %s\n", y.FileOutput, err.Error())
-		fmt.Printf("создаем файл %s\n", y.FileOutput)
-		jsonFile, err = os.Create(y.FileOutput)
-		if err != nil {
-			return fmt.Errorf("ошибка при создании файла: %s: %w\n", y.FileOutput, err)
-		}
+		return fmt.Errorf("ошибка при создании файла: %s: %w\n", y.FileOutput, err)
 	}
 
 	defer jsonFile.Close()
