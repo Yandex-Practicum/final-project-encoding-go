@@ -33,24 +33,21 @@ func (j *JSONData) Encoding() error {
 
 	jsonFile, err := os.ReadFile(j.FileInput)
 	if err != nil {
-		fmt.Printf("ошибка при чтении %s файла: %s", j.FileInput, err.Error())
-		return nil
+		return fmt.Errorf("ошибка при чтении %s файла: %w\n", j.FileInput, err)
 	}
 
 	err = json.Unmarshal(jsonFile, &j.DockerCompose)
 	if err != nil {
-		fmt.Printf("ошибка при десериализации %s файла: %s", j.FileInput, err.Error())
-		return nil
+		return fmt.Errorf("ошибка при десериализации %s файла: %w\n", j.FileInput, err)
 	}
 
 	yamlFile, err := os.Open(j.FileOutput)
 	if err != nil {
-		fmt.Printf("ошибка при открытии файла %s: %s", j.FileOutput, err.Error())
-		fmt.Printf("создаем файл %s", j.FileOutput)
+		fmt.Printf("ошибка при открытии файла %s: %s\n", j.FileOutput, err.Error())
+		fmt.Printf("создаем файл %s\n", j.FileOutput)
 		yamlFile, err = os.Create(j.FileOutput)
 		if err != nil {
-			fmt.Printf("ошибка при создании файла: %s: %s", j.FileOutput, err.Error())
-			return nil
+			return fmt.Errorf("ошибка при создании файла: %s: %w\n", j.FileOutput, err)
 		}
 	}
 
@@ -58,14 +55,12 @@ func (j *JSONData) Encoding() error {
 
 	yamlData, err := yaml.Marshal(&j.DockerCompose)
 	if err != nil {
-		fmt.Printf("ошибка при сериализации в yaml: %s", err.Error())
-		return nil
+		return fmt.Errorf("ошибка при сериализации в yaml: %w\n", err)
 	}
 
 	_, err = yamlFile.Write(yamlData)
 	if err != nil {
-		fmt.Printf("ошибка при записи данных в файл: %s: %s", j.FileOutput, err.Error())
-		return nil
+		return fmt.Errorf("ошибка при записи данных в файл: %s: %w\n", j.FileOutput, err)
 	}
 
 	return nil
@@ -75,24 +70,21 @@ func (j *JSONData) Encoding() error {
 func (y *YAMLData) Encoding() error {
 	yamlFile, err := os.ReadFile(y.FileInput)
 	if err != nil {
-		fmt.Printf("ошибка при чтении %s файла: %s", y.FileInput, err.Error())
-		return nil
+		return fmt.Errorf("ошибка при чтении %s файла: %w\n", y.FileInput, err)
 	}
 
 	err = yaml.Unmarshal(yamlFile, &y.DockerCompose)
 	if err != nil {
-		fmt.Printf("ошибка при десериализации %s файла: %s", y.FileInput, err.Error())
-		return nil
+		return fmt.Errorf("ошибка при десериализации %s файла: %w\n", y.FileInput, err)
 	}
 
 	jsonFile, err := os.Open(y.FileOutput)
 	if err != nil {
-		fmt.Printf("ошибка при открытии файла %s: %s", y.FileOutput, err.Error())
-		fmt.Printf("создаем файл %s", y.FileOutput)
+		fmt.Printf("ошибка при открытии файла %s: %s\n", y.FileOutput, err.Error())
+		fmt.Printf("создаем файл %s\n", y.FileOutput)
 		jsonFile, err = os.Create(y.FileOutput)
 		if err != nil {
-			fmt.Printf("ошибка при создании файла: %s: %s", y.FileOutput, err.Error())
-			return nil
+			return fmt.Errorf("ошибка при создании файла: %s: %w\n", y.FileOutput, err)
 		}
 	}
 
@@ -100,14 +92,12 @@ func (y *YAMLData) Encoding() error {
 
 	jsonData, err := json.Marshal(&y.DockerCompose)
 	if err != nil {
-		fmt.Printf("ошибка при сериализации в json: %s", err.Error())
-		return nil
+		return fmt.Errorf("ошибка при сериализации в json: %w\n", err)
 	}
 
 	_, err = jsonFile.Write(jsonData)
 	if err != nil {
-		fmt.Printf("ошибка при записи данных в файл: %s: %s", y.FileOutput, err.Error())
-		return nil
+		return fmt.Errorf("ошибка при записи данных в файл: %s: %w\n", y.FileOutput, err)
 	}
 
 	return nil
