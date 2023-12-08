@@ -1,7 +1,11 @@
 package encoding
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/Yandex-Practicum/final-project-encoding-go/models"
+	"gopkg.in/yaml.v3"
+	"os"
 )
 
 // JSONData тип для перекодирования из JSON в YAML
@@ -25,16 +29,70 @@ type MyEncoder interface {
 
 // Encoding перекодирует файл из JSON в YAML
 func (j *JSONData) Encoding() error {
-	// ниже реализуйте метод
-	// ...
+
+	var dockerCompose models.DockerCompose
+
+	jsonData, err := os.ReadFile(j.FileInput)
+
+	if err != nil {
+		fmt.Printf("ошибка при чтении файла: %s\n", err.Error())
+		return err
+	}
+
+	err = json.Unmarshal(jsonData, &dockerCompose)
+	if err != nil {
+		fmt.Printf("ошибка при декодировании содержимого jsonData: %s\n", err.Error())
+		return err
+	}
+
+	yamlData, err := yaml.Marshal(&dockerCompose)
+
+	if err != nil {
+		fmt.Printf("ошибка при кодировании dockerCompose в формат YAML: %s\n", err.Error())
+		return err
+	}
+
+	err = os.WriteFile(j.FileOutput, yamlData, 0644)
+
+	if err != nil {
+		fmt.Printf("ошибка при записи содержимого yamlData: %s\n", err.Error())
+		return err
+	}
 
 	return nil
 }
 
 // Encoding перекодирует файл из YAML в JSON
 func (y *YAMLData) Encoding() error {
-	// Ниже реализуйте метод
-	// ...
+	var dockerCompose models.DockerCompose
+
+	yamlData, err := os.ReadFile(y.FileInput)
+
+	if err != nil {
+		fmt.Printf("произошла ошибка при чтении файла: %s\n", err.Error())
+		return err
+	}
+
+	err = yaml.Unmarshal(yamlData, &dockerCompose)
+
+	if err != nil {
+		fmt.Printf("произошла ошибка декодирования содержимого yamlData: %s\n", err.Error())
+		return err
+	}
+
+	jsonData, err := json.Marshal(&dockerCompose)
+
+	if err != nil {
+		fmt.Printf("произошла ошибка кодирования в формат JSON: %s\n", err.Error())
+		return err
+	}
+
+	err = os.WriteFile(y.FileOutput, jsonData, 0644)
+
+	if err != nil {
+		fmt.Printf("ошибка при записи содержимого jsonData: %s\n", err.Error())
+		return err
+	}
 
 	return nil
 }
