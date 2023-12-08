@@ -31,18 +31,14 @@ type MyEncoder interface {
 
 // Encoding перекодирует файл из JSON в YAML
 func (j *JSONData) Encoding() error {
-	var dockerCompose models.DockerCompose
 
 	jsonFile, err := os.Open(j.FileInput)
-
 	if err != nil {
 		return fmt.Errorf("open file: %w", err)
 	}
-
-	jsonData, err := io.ReadAll(jsonFile)
-
 	defer jsonFile.Close()
 
+	jsonData, err := io.ReadAll(jsonFile)
 	if err != nil {
 		return fmt.Errorf("read file: %w", err)
 	}
@@ -51,7 +47,7 @@ func (j *JSONData) Encoding() error {
 		return fmt.Errorf("unmarshal: %w", err)
 	}
 
-	yamlData, err := yaml.Marshal(&dockerCompose)
+	yamlData, err := yaml.Marshal(&j.DockerCompose)
 	if err != nil {
 		return fmt.Errorf("marshal: %w", err)
 	}
@@ -60,11 +56,9 @@ func (j *JSONData) Encoding() error {
 	if err != nil {
 		return fmt.Errorf("create file: %w", err)
 	}
-
-	_, err = yamlFile.Write(yamlData)
-
 	defer yamlFile.Close()
 
+	_, err = yamlFile.Write(yamlData)
 	if err != nil {
 		return fmt.Errorf("write file: %w", err)
 	}
@@ -74,18 +68,13 @@ func (j *JSONData) Encoding() error {
 
 // Encoding перекодирует файл из YAML в JSON
 func (y *YAMLData) Encoding() error {
-	var dockerCompose models.DockerCompose
 
 	yamlFile, err := os.Open(y.FileInput)
-
 	if err != nil {
 		return fmt.Errorf("open file: %w", err)
 	}
-
-	yamlData, err := io.ReadAll(yamlFile)
-
 	defer yamlFile.Close()
-
+	yamlData, err := io.ReadAll(yamlFile)
 	if err != nil {
 		return fmt.Errorf("read file: %w", err)
 	}
@@ -94,7 +83,7 @@ func (y *YAMLData) Encoding() error {
 		return fmt.Errorf("unmarshal: %w", err)
 	}
 
-	jsonData, err := json.Marshal(&dockerCompose)
+	jsonData, err := json.Marshal(&y.DockerCompose)
 	if err != nil {
 		return fmt.Errorf("marshal: %w", err)
 	}
@@ -103,11 +92,9 @@ func (y *YAMLData) Encoding() error {
 	if err != nil {
 		return fmt.Errorf("create file: %w", err)
 	}
-
-	_, err = jsonFile.Write(jsonData)
-
 	defer jsonFile.Close()
 
+	_, err = jsonFile.Write(jsonData)
 	if err != nil {
 		return fmt.Errorf("write file: %w", err)
 	}
