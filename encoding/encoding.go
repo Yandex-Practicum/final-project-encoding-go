@@ -41,13 +41,13 @@ func (j *JSONData) Encoding() error {
 
 	jsonData, err := io.ReadAll(jsonFile)
 
-	jsonFile.Close()
+	defer jsonFile.Close()
 
 	if err != nil {
 		return fmt.Errorf("read file: %w", err)
 	}
 
-	if err = json.Unmarshal(jsonData, &dockerCompose); err != nil {
+	if err = json.Unmarshal(jsonData, &j.DockerCompose); err != nil {
 		return fmt.Errorf("unmarshal: %w", err)
 	}
 
@@ -63,7 +63,7 @@ func (j *JSONData) Encoding() error {
 
 	_, err = yamlFile.Write(yamlData)
 
-	yamlFile.Close()
+	defer yamlFile.Close()
 
 	if err != nil {
 		return fmt.Errorf("write file: %w", err)
@@ -84,13 +84,13 @@ func (y *YAMLData) Encoding() error {
 
 	yamlData, err := io.ReadAll(yamlFile)
 
-	yamlFile.Close()
+	defer yamlFile.Close()
 
 	if err != nil {
 		return fmt.Errorf("read file: %w", err)
 	}
 
-	if err = yaml.Unmarshal(yamlData, &dockerCompose); err != nil {
+	if err = yaml.Unmarshal(yamlData, &y.DockerCompose); err != nil {
 		return fmt.Errorf("unmarshal: %w", err)
 	}
 
@@ -106,7 +106,7 @@ func (y *YAMLData) Encoding() error {
 
 	_, err = jsonFile.Write(jsonData)
 
-	jsonFile.Close()
+	defer jsonFile.Close()
 
 	if err != nil {
 		return fmt.Errorf("write file: %w", err)
