@@ -2,17 +2,16 @@ package utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 
 	"github.com/Yandex-Practicum/final-project-encoding-go/models"
 	"gopkg.in/yaml.v3"
 )
 
-func CreateJSONFile() {
+func CreateJSONFile() error {
 	jsonFile, err := os.Create("jsonInput.json")
 	if err != nil {
-		fmt.Printf("json file creation fail: %s", err.Error())
+		return err
 	}
 
 	defer jsonFile.Close()
@@ -55,19 +54,20 @@ func CreateJSONFile() {
 
 	out, err := json.Marshal(&dockerCompose)
 	if err != nil {
-		fmt.Printf("json encoding fail: %s", err.Error())
+		return err
 	}
 
 	_, err = jsonFile.Write(out)
 	if err != nil {
-		fmt.Printf("writing data fail: %s", err.Error())
+		return err
 	}
+	return nil
 }
 
-func CreateYAMLFile() {
+func CreateYAMLFile() error {
 	yamlFile, err := os.Create("yamlInput.yml")
 	if err != nil {
-		fmt.Printf("yaml file creation fail: %s", err.Error())
+		return err
 	}
 
 	defer yamlFile.Close()
@@ -110,11 +110,12 @@ func CreateYAMLFile() {
 
 	out, err := yaml.Marshal(&dockerCompose)
 	if err != nil {
-		fmt.Printf("yaml encoding fail: %s", err.Error())
+		return err
 	}
 
 	_, err = yamlFile.Write(out)
 	if err != nil {
-		fmt.Printf("writing data fail: %s", err.Error())
+		return err
 	}
+	return nil
 }

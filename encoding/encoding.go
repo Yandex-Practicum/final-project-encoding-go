@@ -6,14 +6,14 @@ import (
 
 // JSONData тип для перекодирования из JSON в YAML
 type JSONData struct {
-	DockerCompose *models.DockerCompose
+	DockerCompose models.DockerCompose
 	FileInput     string
 	FileOutput    string
 }
 
 // YAMLData тип для перекодирования из YAML в JSON
 type YAMLData struct {
-	DockerCompose *models.DockerCompose
+	DockerCompose models.DockerCompose
 	FileInput     string
 	FileOutput    string
 }

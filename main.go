@@ -12,8 +12,15 @@ func Encode(data encoding.MyEncoder) error {
 }
 
 func main() {
-	utils.CreateJSONFile()
-	utils.CreateYAMLFile()
+	if err := utils.CreateJSONFile(); err != nil {
+		fmt.Printf("При генерации JSON-файла произошла ошибка: %s", err.Error())
+		return
+	}
+
+	if err := utils.CreateYAMLFile(); err != nil {
+		fmt.Printf("При генерации YAML-файла произошла ошибка: %s", err.Error())
+		return
+	}
 
 	jsonData := encoding.JSONData{FileInput: "jsonInput.json", FileOutput: "yamlOutput.yml"}
 	err := Encode(&jsonData)
