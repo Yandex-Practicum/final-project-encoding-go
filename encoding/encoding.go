@@ -29,8 +29,7 @@ type MyEncoder interface {
 
 // Encoding перекодирует файл из JSON в YAML
 func (j *JSONData) Encoding() error {
-	// ниже реализуйте метод
-	// ...
+
 	fileJson, err := os.ReadFile(j.FileInput)
 	if err != nil {
 		return err
@@ -62,8 +61,7 @@ func (j *JSONData) Encoding() error {
 
 // Encoding перекодирует файл из YAML в JSON
 func (y *YAMLData) Encoding() error {
-	// Ниже реализуйте метод
-	// ...
+
 	yamlFile, err := os.ReadFile(y.FileInput)
 	if err != nil {
 		return err
