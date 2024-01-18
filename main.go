@@ -26,4 +26,5 @@ func main() {
 	if err != nil {
 		fmt.Printf("ошибка при перекодировании данных из YAML в JSON: %s", err.Error())
 	}
+
 }

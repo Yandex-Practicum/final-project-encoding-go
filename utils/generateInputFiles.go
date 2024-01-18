@@ -53,7 +53,7 @@ func CreateJSONFile() {
 		Services: services,
 	}
 
-	out, err := json.Marshal(&dockerCompose)
+	out, err := json.MarshalIndent(&dockerCompose, "", "    ")
 	if err != nil {
 		fmt.Printf("json encoding fail: %s", err.Error())
 	}
